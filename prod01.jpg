@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Heritage By Aemli — Where Heritage Meets Her</title>
+<meta name="description" content="Handcrafted Indian ethnic wear for women. Anarkali & suit sets for every celebration." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="index">
+<a class="skip" href="#main">Skip to content</a>
+<div id="siteHeader"></div>
+
+<main id="main">
+  <section class="hero" style="background-image:url('hero_garden.jpg')">
+    <div class="container inner">
+      <p class="kicker">Vol. 01 — The Celebration Edit</p>
+      <h1>Where Heritage<br>Meets <em>Her.</em></h1>
+      <p>Handcrafted anarkali &amp; suit sets for the woman who turns every occasion into a memory. Breathable fabrics, graceful silhouettes, finished by hand.</p>
+      <div class="cta"><a class="btn btn-primary" href="shop.html">Shop The Edit</a><a class="btn btn-ghost" href="https://wa.me/917770946463">Get Styled on WhatsApp</a></div>
+    </div>
+    <div class="side-label">Handcrafted in India · 100% Artisan</div>
+    <div class="scrollcue">Scroll · The Edit</div>
+  </section>
+
+  <section class="ed">
+    <div class="container manifesto">
+      <div class="big">We believe every occasion deserves to be <em>worn</em> — not just attended. Each piece is a small celebration of Indian craft, made for the modern woman.</div>
+      <div class="side">
+        <p class="drop">Heritage By Aemli began with a simple idea: that tradition and ease can share the same wardrobe. Our ateliers hand-finish breathable cottons, muslins and silks into silhouettes you can dance, host and simply live in.</p>
+        <p>From a Diwali puja to a destination wedding, our sets move with you — graceful, never heavy.</p>
+        <a class="btn btn-outline" href="index.html#story">Read Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ed" id="occasion" style="background:var(--blush)">
+    <div class="container">
+      <div class="ed-head"><p class="kicker">01 — Shop by Occasion</p><h2>Edits for Every Moment</h2><p>Curated stories for the occasions that matter most.</p></div>
+      <div class="occasion">
+        <a class="occ big" href="shop.html?occasion=Festive" style="background-image:url('prod09.jpg')"><div class="meta"><span class="num">01</span><b>Festive &amp; Diwali</b><small>Glow Season</small></div></a>
+        <a class="occ wide" href="shop.html?occasion=Wedding%20Guest" style="background-image:url('prod02.jpg')"><div class="meta"><span class="num">02</span><b>Wedding Guest</b><small>Guest of Grace</small></div></a>
+        <a class="occ sm" href="shop.html?occasion=Engagement" style="background-image:url('prod08.jpg')"><div class="meta"><span class="num">03</span><b>Engagement</b><small>Soft &amp; Romantic</small></div></a>
+        <a class="occ sm" href="shop.html?occasion=Office" style="background-image:url('prod06.jpg')"><div class="meta"><span class="num">04</span><b>Office &amp; Casual</b><small>Everyday Ease</small></div></a>
+        <a class="occ wide" href="shop.html?occasion=Family%20Functions" style="background-image:url('prod05.jpg')"><div class="meta"><span class="num">05</span><b>Family Functions</b><small>Togetherness</small></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="background-image:url('atelier.jpg')">
+    <div class="container inner">
+      <p class="kicker" style="color:var(--gold)">02 — In the Atelier</p>
+      <h2>Finished by Hand,<br>Worn with Heart</h2>
+      <p>Every Heritage By Aemli set passes through artisan hands — block-printing, embroidery and hand-rolled finishes that machines cannot replicate. Slow craft, made to be celebrated.</p>
+      <a class="btn btn-primary" href="index.html#story">Discover Our Craft</a>
+    </div>
+  </section>
+
+  <section class="ed" id="new">
+    <div class="container">
+      <div class="ed-head"><p class="kicker">03 — Editor's Pick</p><h2>The Spotlight</h2></div>
+      <div class="spotlight">
+        <div class="ph" style="background-image:url('prod05.jpg')"></div>
+        <div class="info">
+          <span class="coll">Muslin · The Heritage Collection</span>
+          <h3>Bagh E Gulab Angrakha Set</h3>
+          <div class="stars"><span id="spStars"></span></div>
+          <div class="price-row"><span class="price">₹6,768</span><span class="mrp">₹11,596</span><span class="off">42% OFF</span></div>
+          <p class="emi">No Cost EMI from ₹564/mo</p>
+          <ul class="spec">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 3-piece set — angrakha, dupatta &amp; bottom</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Hand-finished muslin with delicate embroidery</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Breathable &amp; true-to-size · easy 7-day returns</li>
+          </ul>
+          <div class="cta"><a class="btn btn-primary" href="product.html?id=5">View Details</a><a class="btn btn-outline" href="https://wa.me/917770946463">Style on WhatsApp</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ed" id="shop" style="background:var(--blush)">
+    <div class="container">
+      <div class="ed-head"><p class="kicker">04 — The Collection</p><h2>Selected Styles</h2><p>Highly loved pieces chosen for standout value and graceful styling.</p></div>
+      <div class="grid" id="productGrid"></div>
+      <div style="text-align:center;margin-top:40px"><a class="btn btn-outline" href="shop.html">View All Styles</a></div>
+    </div>
+  </section>
+
+  <section class="ed" id="colour">
+    <div class="container">
+      <div class="ed-head"><p class="kicker">05 — An Ode to Colour</p><h2>The Palette of Celebration</h2></div>
+      <div class="colour">
+        <div class="swatch"><div class="chip" style="background:#C0396B"><b>Aemli Rose</b></div><div class="txt"><p>The heart of the house — romantic, warm and unmistakably festive.</p></div></div>
+        <div class="swatch"><div class="chip" style="background:#1F4E3D"><b>Bottle Green</b></div><div class="txt"><p>Grounding and regal. A heritage hue that photographs like jewellery.</p></div></div>
+        <div class="swatch"><div class="chip" style="background:#B8893B"><b>Antique Gold</b></div><div class="txt"><p>The thread that ties it together — zari, gota and tassels that catch the light.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ed" style="padding-top:0">
+    <div class="container">
+      <div class="trust">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg><b>Premium Fabrics</b><small>Breathable</small></div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z"/></svg><b>Handpicked</b><small>Curated</small></div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><b>Comfortable</b><small>Made to move</small></div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4"/></svg><b>Easy Returns</b><small>7-day</small></div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><b>Secure</b><small>Encrypted</small></div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v8H3z"/><path d="M14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg><b>Fast Delivery</b><small>Pan-India</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ed" style="background:var(--blush)">
+    <div class="container">
+      <div class="ed-head"><p class="kicker">06 — Loved By Our Women</p><h2>In Their Words</h2><p>Rated <b>4.8 / 5</b> across 1,200+ verified orders.</p></div>
+      <div class="reviews" id="reviewGrid"></div>
+    </div>
+  </section>
+
+  <section class="ed" id="lookbook">
+    <div class="container">
+      <div class="ed-head"><p class="kicker">07 — The Lookbook</p><h2>Styled in Heritage By Aemli</h2></div>
+      <div class="lookbook">
+        <a class="look" href="shop.html" style="background-image:url('prod01.jpg')"><span class="cap">Look 01 · Garden Rose</span></a>
+        <a class="look" href="shop.html" style="background-image:url('prod02.jpg')"><span class="cap">Look 02 · Bottle Green</span></a>
+        <a class="look" href="shop.html" style="background-image:url('prod03.jpg')"><span class="cap">Look 03 · Royal Blue</span></a>
+        <a class="look" href="shop.html" style="background-image:url('prod05.jpg')"><span class="cap">Look 04 · Heritage</span></a>
+        <a class="look" href="shop.html" style="background-image:url('prod06.jpg')"><span class="cap">Look 05 · Sky Blue</span></a>
+        <a class="look" href="shop.html" style="background-image:url('prod07.jpg')"><span class="cap">Look 06 · Bloom</span></a>
+        <a class="look" href="shop.html" style="background-image:url('prod09.jpg')"><span class="cap">Look 07 · Golden Hour</span></a>
+        <a class="look" href="shop.html" style="background-image:url('prod10.jpg')"><span class="cap">Look 08 · Mirror Work</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ed" id="help" style="padding-top:0">
+    <div class="container">
+      <div class="help">
+        <p class="kicker">Concierge Styling</p>
+        <h2>Not Sure What to Wear?</h2>
+        <p>Chat with us for styling guidance across 3-piece suit sets, festive wear, wedding looks and everyday Indian ethnic dresses.</p>
+        <a class="btn btn-primary" href="https://wa.me/917770946463">Get Styling Help on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ed" style="padding-top:0">
+    <div class="news">
+      <h2>Join the Celebration</h2>
+      <p>First access to new drops and festive edits — plus your welcome code. Just craft and occasions, never spam.</p>
+      <form onsubmit="event.preventDefault();AEMLI_UI.toast('Welcome to Heritage By Aemli ✿ Code AEMLI100 sent!');this.reset();">
+        <input type="email" required placeholder="Your email address" aria-label="Email address" />
+        <button class="btn btn-primary" type="submit">Get My Code</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div id="siteFooter"></div>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/ui.js"></script>
+<script>
+  // Home grids
+  const grid=document.getElementById('productGrid');
+  window.AEMLI_PRODUCTS.forEach(p=>grid.insertAdjacentHTML('beforeend',AEMLI_UI.productCard(p)));
+  // spotlight stars
+  document.getElementById('spStars').innerHTML=AEMLI_UI.starsHTML(4.9)+' <span style="color:var(--muted)">(203)</span>';
+  // reviews
+  document.getElementById('reviewGrid').innerHTML=window.AEMLI_REVIEWS.map(r=>`
+    <div class="rev"><div class="stars">${AEMLI_UI.heart(true).replace('currentColor','var(--gold)').repeat(r.rating)}</div><p class="q">"${r.text}"</p><div class="who"><b>${r.name}</b> · ${r.city}</div></div>`).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+/* ===== Heritage By Aemli — store: cart, wishlist, auth (localStorage) ===== */
+(function(){
+  const K = { cart:'aemli_cart', wish:'aemli_wishlist', users:'aemli_users', session:'aemli_session' };
+  const get = k => { try { return JSON.parse(localStorage.getItem(k)) || []; } catch(e){ return []; } };
+  const set = (k,v) => localStorage.setItem(k, JSON.stringify(v));
+
+  function byId(id){ return window.AEMLI_PRODUCTS.find(p=>p.id==id); }
+  function formatINR(n){ return '₹' + Number(n).toLocaleString('en-IN'); }
+  function discount(p){ return Math.round((1 - p.price/p.mrp)*100); }
+  function emi(p){ return Math.round(p.price/12); }
+
+  /* ---- CART ---- */
+  function getCart(){ return get(K.cart); }
+  function cartCount(){ return getCart().reduce((s,i)=>s+i.qty,0); }
+  function addToCart(id, size, qty){
+    size = size || 'M'; qty = qty || 1;
+    const cart = getCart();
+    const ex = cart.find(i=>i.id==id && i.size==size);
+    if(ex) ex.qty += qty; else cart.push({id, size, qty});
+    set(K.cart, cart); sync(); return cartCount();
+  }
+  function updateQty(id, size, qty){
+    let cart = getCart();
+    cart = cart.map(i=> (i.id==id && i.size==size) ? {...i, qty:Math.max(1,qty)} : i);
+    set(K.cart, cart); sync(); return cartCount();
+  }
+  function removeFromCart(id, size){
+    let cart = getCart().filter(i=>!(i.id==id && i.size==size));
+    set(K.cart, cart); sync(); return cartCount();
+  }
+  function cartItems(){ return getCart().map(i=>({...byId(i.id), size:i.size, qty:i.qty})); }
+  function cartSubtotal(){ return cartItems().reduce((s,i)=>s+i.price*i.qty,0); }
+  function clearCart(){ set(K.cart, []); sync(); }
+
+  /* ---- WISHLIST ---- */
+  function getWishlist(){ return get(K.wish); }
+  function wishCount(){ return getWishlist().length; }
+  function inWishlist(id){ return getWishlist().includes(id); }
+  function toggleWishlist(id){
+    let w = getWishlist();
+    if(w.includes(id)) w = w.filter(x=>x!=id); else w.push(id);
+    set(K.wish, w); sync(); return w.includes(id);
+  }
+  function wishlistItems(){ return getWishlist().map(byId).filter(Boolean); }
+
+  /* ---- AUTH ---- */
+  function getUsers(){ return get(K.users); }
+  function register(name, email, password){
+    email = email.trim().toLowerCase();
+    if(getUsers().some(u=>u.email==email)) return {ok:false, msg:'An account with this email already exists.'};
+    const users = getUsers(); users.push({name, email, password}); set(K.users, users);
+    set(K.session, email); return {ok:true};
+  }
+  function login(email, password){
+    email = email.trim().toLowerCase();
+    const u = getUsers().find(u=>u.email==email && u.password==password);
+    if(!u) return {ok:false, msg:'Invalid email or password.'};
+    set(K.session, email); return {ok:true, user:u};
+  }
+  function logout(){ localStorage.removeItem(K.session); sync(); }
+  function currentUser(){ const e=localStorage.getItem(K.session); return getUsers().find(u=>u.email==e) || null; }
+  function isLoggedIn(){ return !!currentUser(); }
+
+  /* ---- SYNC (header counts) ---- */
+  function sync(){ document.dispatchEvent(new CustomEvent('aemli:update')); }
+
+  window.Store = {
+    byId, formatINR, discount, emi,
+    getCart, cartCount, addToCart, updateQty, removeFromCart, cartItems, cartSubtotal, clearCart,
+    getWishlist, wishCount, inWishlist, toggleWishlist, wishlistItems,
+    getUsers, register, login, logout, currentUser, isLoggedIn
+  };
+})();

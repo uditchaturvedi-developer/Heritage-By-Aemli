@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cart — Heritage By Aemli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="cart">
+<a class="skip" href="#main">Skip to content</a>
+<div id="siteHeader"></div>
+
+<main id="main">
+  <section class="shop-hero"><div class="container"><p class="kicker">Your Bag</p><h1>Shopping Cart</h1></div></section>
+  <div class="container">
+    <div class="cart-layout">
+      <div class="cart-list" id="cartList"></div>
+      <aside class="summary" id="summary"></aside>
+    </div>
+  </div>
+</main>
+
+<div id="siteFooter"></div>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/ui.js"></script>
+<script>
+  const S=window.Store;
+  function render(){
+    const items=S.cartItems();
+    const list=document.getElementById('cartList');
+    if(!items.length){
+      list.innerHTML=`<div class="empty-box"><h2 style="font-family:var(--serif);font-size:32px">Your bag is empty</h2><p>Looks like you haven't added anything yet.</p><a class="btn btn-primary" href="shop.html">Explore the Collection</a></div>`;
+      document.getElementById('summary').innerHTML='';
+      return;
+    }
+    list.innerHTML=items.map(it=>`
+      <div class="cart-item">
+        <a href="product.html?id=${it.id}"><img src="${it.img}" alt="${it.name}"></a>
+        <div>
+          <a class="ci-name" href="product.html?id=${it.id}">${it.name}</a>
+          <div class="ci-meta">Size: ${it.size} · ${AEMLI_UI.starsHTML(it.rating)}</div>
+          <div class="ci-price">${S.formatINR(it.price)} ${it.qty>1?`× ${it.qty} = ${S.formatINR(it.price*it.qty)}`:''}</div>
+          <div class="qty" style="margin-top:10px">
+            <button onclick="AEMLI_CART.qty(${it.id},'${it.size}',-1)">−</button>
+            <span>${it.qty}</span>
+            <button onclick="AEMLI_CART.qty(${it.id},'${it.size}',1)">+</button>
+          </div>
+        </div>
+        <div class="ci-actions">
+          <span class="ci-price">${S.formatINR(it.price*it.qty)}</span>
+          <button class="remove" onclick="AEMLI_CART.remove(${it.id},'${it.size}')">Remove</button>
+        </div>
+      </div>`).join('');
+
+    const sub=S.cartSubtotal();
+    const ship=sub>=2999?0:99;
+    const total=sub+ship;
+    document.getElementById('summary').innerHTML=`
+      <h3>Order Summary</h3>
+      <div class="row"><span>Subtotal (${S.cartCount()} item${S.cartCount()!==1?'s':''})</span><span>${S.formatINR(sub)}</span></div>
+      <div class="row"><span>Shipping</span><span class="${ship===0?'free':''}">${ship===0?'FREE':S.formatINR(ship)}</span></div>
+      <div class="row total"><span>Total</span><span>${S.formatINR(total)}</span></div>
+      <button class="btn btn-primary btn-block" style="margin-top:18px" onclick="AEMLI_CART.checkout()">Checkout · ${S.formatINR(total)}</button>
+      <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:10px">No Cost EMI available · Secure checkout</p>`;
+  }
+  window.AEMLI_CART={
+    qty(id,size,d){ S.updateQty(id,size, S.cartItems().find(i=>i.id===id&&i.size===size).qty+d); render(); },
+    remove(id,size){ S.removeFromCart(id,size); render(); },
+    checkout(){ S.clearCart(); render(); AEMLI_UI.toast('Order placed! (demo) ✿ Thank you for celebrating with us.'); }
+  };
+  render();
+</script>
+</body>
+</html>

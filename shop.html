@@ -1,0 +1,39 @@
+# Heritage By Aemli — Static Storefront
+
+A fully working front-end prototype for an Indian ethnic-wear brand:
+homepage, shop (filters/search), product detail, cart, wishlist, login, register, account.
+All state (cart, wishlist, accounts) is persisted in the browser via `localStorage` — **no backend or database required**.
+
+## Local development
+Any static server works. From this folder:
+
+```bash
+# Python (built-in on Mac/Linux; install on Windows)
+python3 -m http.server 8099
+# then open http://localhost:8099/
+
+# or Node
+npx serve .
+```
+
+You can also just double-click `index.html`, but a local server is recommended.
+
+## Deploy to Vercel via GitHub
+1. Create a **new GitHub repository** and push this folder's contents to it
+   (the repo root must contain `index.html`, `vercel.json`, `css/`, `js/`, and the images).
+2. Go to [vercel.com](https://vercel.com) → **Add New → Project** → import that GitHub repo.
+3. Vercel auto-detects it as a static site. Settings (if needed):
+   - **Framework Preset:** Other / No Framework
+   - **Root Directory:** `.` (repo root)
+   - **Build Command:** *(leave empty)*
+   - **Output Directory:** `.`
+4. Click **Deploy**. Your site goes live on a `*.vercel.app` URL.
+5. (Optional) Add a custom domain under **Project → Domains**.
+
+`vercel.json` already sets `cleanUrls: true` so `/shop` resolves to `shop.html`, and
+`framework: null` so Vercel treats it as a pure static site (no build step).
+
+## Notes
+- This is a front-end prototype: **Checkout** shows a demo confirmation and clears the cart — there is no real payment or database.
+- Two products (Lavender *Meraki Jiya*, Black *Gul E Gulabi*) use placeholder images (`prod05.jpg` / `prod10.jpg`); swap them for real shots when available.
+- For a real store, wire the cart/checkout and auth to a backend (e.g., Shopify, Medusa, or your own API).

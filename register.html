@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Product — Heritage By Aemli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="product">
+<a class="skip" href="#main">Skip to content</a>
+<div id="siteHeader"></div>
+
+<main id="main">
+  <div class="container">
+    <div id="pdpRoot"></div>
+    <section class="ed" style="padding-top:40px">
+      <div class="ed-head"><p class="kicker">Complete the Look</p><h2>You May Also Like</h2></div>
+      <div class="grid" id="related"></div>
+    </section>
+    <section class="ed" style="padding-top:0">
+      <div class="ed-head"><p class="kicker">Reviews</p><h2>What Our Women Say</h2></div>
+      <div class="reviews" id="pdpReviews"></div>
+    </section>
+  </div>
+</main>
+
+<div class="sticky-buy" id="stickyBuy">
+  <img id="sbImg" src="" alt=""><div><div class="si-name" id="sbName"></div><div class="si-price" id="sbPrice"></div></div>
+  <button class="btn btn-primary" id="sbAdd">Add to Cart</button>
+</div>
+
+<div id="siteFooter"></div>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/ui.js"></script>
+<script>
+  const S=window.Store;
+  const id=parseInt(new URLSearchParams(location.search).get('id'));
+  const p=S.byId(id);
+  if(!p){ location.href='shop.html'; }
+
+  let selectedSize=null, qty=1;
+  const root=document.getElementById('pdpRoot');
+  root.innerHTML=`
+    <nav style="font-size:13px;color:var(--muted);margin-bottom:10px"><a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span>${p.name}</span></nav>
+    <div class="pdp">
+      <div class="gallery">
+        <div class="main-img"><img id="mainImg" src="${p.img}" alt="${p.name}"></div>
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+      <div class="pdp-info">
+        <span class="coll">${p.collection} · ${p.fabric}</span>
+        <h1>${p.name}</h1>
+        <div class="stars">${AEMLI_UI.starsHTML(p.rating)} <b style="color:var(--ink)">${p.rating.toFixed(1)}</b> <span style="color:var(--muted)">(${p.reviews} reviews)</span></div>
+        <div class="price-row"><span class="price">${S.formatINR(p.price)}</span><span class="mrp">${S.formatINR(p.mrp)}</span><span class="off">${S.discount(p)}% OFF</span></div>
+        <p class="emi">No Cost EMI from ${S.formatINR(S.emi(p))}/mo · Inclusive of all taxes</p>
+        <p style="color:var(--muted)">${p.desc}</p>
+        <div class="size-row">
+          <div class="lbl"><span>Select Size</span><a href="cart.html">Size Guide</a></div>
+          <div class="sizes" id="sizes"></div>
+        </div>
+        <div class="size-row">
+          <div class="lbl"><span>Quantity</span></div>
+          <div class="qty"><button onclick="AEMLI_PDP.dec()">−</button><span id="qtyVal">1</span><button onclick="AEMLI_PDP.inc()">+</button></div>
+        </div>
+        <div class="pdp-cta">
+          <button class="btn btn-primary" id="addBtn" style="flex:1">Add to Cart — ${S.formatINR(p.price)}</button>
+          <button class="btn btn-outline" id="wishBtn">♡ Wishlist</button>
+        </div>
+        <div class="acc">
+          <details open><summary>What's in the set</summary><p>3-piece set — kurta, dupatta &amp; bottom. Hand-finished with artisan detailing.</p></details>
+          <details><summary>Fabric &amp; Care</summary><p>${p.fabric} · Breathable and skin-friendly. Dry clean recommended to preserve embroidery.</p></details>
+          <details><summary>Shipping &amp; Returns</summary><p>Free shipping above ₹2,999. Easy 7-day returns. Dispatched within 24–48 hours.</p></details>
+        </div>
+      </div>
+    </div>`;
+
+  // thumbs
+  const thumbs=document.getElementById('thumbs');
+  for(let i=0;i<4;i++){ const im=document.createElement('img'); im.src=p.img; im.alt=p.name; if(i===0)im.classList.add('active'); im.onclick=()=>{document.getElementById('mainImg').src=p.img; thumbs.querySelectorAll('img').forEach(x=>x.classList.remove('active')); im.classList.add('active');}; thumbs.appendChild(im); }
+
+  // sizes
+  const sizesEl=document.getElementById('sizes');
+  p.sizes.forEach(sz=>{ const b=document.createElement('button'); b.textContent=sz; b.onclick=()=>{selectedSize=sz; sizesEl.querySelectorAll('button').forEach(x=>x.classList.remove('active')); b.classList.add('active');}; sizesEl.appendChild(b); });
+
+  // wishlist state
+  const wishBtn=document.getElementById('wishBtn');
+  function paintWish(){ const on=S.inWishlist(p.id); wishBtn.innerHTML=on?'♥ Saved':'♡ Wishlist'; wishBtn.style.color=on?'var(--rose)':''; wishBtn.style.borderColor=on?'var(--rose)':''; }
+  wishBtn.onclick=()=>{ S.toggleWishlist(p.id); paintWish(); AEMLI_UI.toast(S.inWishlist(p.id)?'Saved to wishlist ♡':'Removed from wishlist'); };
+  paintWish();
+
+  function doAdd(){ if(!selectedSize){AEMLI_UI.toast('Please select a size');return false;} S.addToCart(p.id,selectedSize,qty); AEMLI_UI.toast('Added to bag ✿'); return true; }
+  document.getElementById('addBtn').onclick=doAdd;
+
+  // sticky bar
+  document.getElementById('sbImg').src=p.img; document.getElementById('sbName').textContent=p.name; document.getElementById('sbPrice').textContent=S.formatINR(p.price);
+  document.getElementById('sbAdd').onclick=()=>{ if(!selectedSize){AEMLI_UI.toast('Please select a size');document.querySelector('.size-row').scrollIntoView({behavior:'smooth'});return;} S.addToCart(p.id,selectedSize,qty); AEMLI_UI.toast('Added to bag ✿'); };
+  const sb=document.getElementById('stickyBuy');
+  addEventListener('scroll',()=>{ sb.classList.toggle('show', scrollY>500); });
+
+  window.AEMLI_PDP={ inc(){qty++;document.getElementById('qtyVal').textContent=qty;}, dec(){if(qty>1)qty--;document.getElementById('qtyVal').textContent=qty;} };
+
+  // related
+  const related=window.AEMLI_PRODUCTS.filter(x=>x.id!==p.id && (x.color===p.color || x.occasion.some(o=>p.occasion.includes(o)))).slice(0,4);
+  document.getElementById('related').innerHTML=related.map(x=>AEMLI_UI.productCard(x)).join('');
+
+  // reviews
+  document.getElementById('pdpReviews').innerHTML=window.AEMLI_REVIEWS.map(r=>`
+    <div class="rev"><div class="stars">${AEMLI_UI.heart(true).replace('currentColor','var(--gold)').repeat(r.rating)}</div><p class="q">"${r.text}"</p><div class="who"><b>${r.name}</b> · ${r.city}</div></div>`).join('');
+</script>
+</body>
+</html>
